@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name         New Userscript
+// @name         Candidates Scraper for Djinni
 // @namespace    http://tampermonkey.net/
 // @version      2025-04-05
-// @description  try to take over the world!
-// @author       You
-// @match        https://djinni.co/developers/?title=JavaScript&exp_from=2&exp_to=3&english=intermediate&employment=remote&from_page=salaries&english_level=upper&region=UKR&location=vinnytsia
+// @description  Scrape candidates from Djinni
+// @author       Ihor Sheptiakov
+// @match        https://djinni.co/developers/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=djinni.co
 // @grant        none
 // ==/UserScript==
