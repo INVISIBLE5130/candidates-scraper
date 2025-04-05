@@ -1,5 +1,7 @@
 # Djinni Candidates Scraper
 
+> ⚡️ Tired of manually copying candidate information from Djinni? Spending hours clicking through pages and copying data into spreadsheets? Our scraper automates the entire process, extracting all candidate details in seconds and delivering them in a ready-to-use CSV format.
+
 A browser-based scraper for extracting candidate information from Djinni (a job platform). This script runs directly in the browser and allows you to collect candidate data from multiple pages.
 
 ## Features
