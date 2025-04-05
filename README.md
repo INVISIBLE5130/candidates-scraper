@@ -22,18 +22,18 @@ A browser-based scraper for extracting candidate information from Djinni (a job 
 
 ## How to Use
 
-### Option 1: Using Tampermonkey (Recommended)
-
 1. Install the Tampermonkey browser extension:
    - [Chrome Web Store](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
    - [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)
    - [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd)
    - [Safari Extension](https://apps.apple.com/app/tampermonkey/id1482490089)
 
-2. Create a new script in Tampermonkey:
-   - Click on the Tampermonkey icon in your browser
-   - Select "Create a new script"
-   - Copy and paste the contents of `browser-script-csv.js` into the editor
+2. Install the script:
+   - Go to [Candidates Scraper Gist](https://gist.github.com/INVISIBLE5130/e7943a8295d6ad7074c65d8a399b6538)
+   - Click the "Raw" button to view the raw script
+   - Copy the entire script content
+   - Open Tampermonkey and click "Create a new script"
+   - Paste the copied content into the editor
    - Save the script (Ctrl+S or Cmd+S)
 
 3. Navigate to the Djinni candidates page
