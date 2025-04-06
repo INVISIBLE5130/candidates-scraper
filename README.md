@@ -7,6 +7,7 @@ A browser-based scraper for extracting candidate information from Djinni (a job 
 ## Features
 
 - Extracts detailed candidate information including:
+  - Level (automatically determined based on experience and position)
   - Position
   - Salary
   - Location (Country and City)
@@ -38,16 +39,27 @@ A browser-based scraper for extracting candidate information from Djinni (a job 
    - Paste the copied content into the editor
    - Save the script (Ctrl+S or Cmd+S)
 
-3. Navigate to the Djinni candidates page
-4. The script will automatically run and:
-   - Start scraping the current page
-   - Navigate through all available pages
-   - Collect candidate information
-   - Generate and download a CSV file with all the data
+3. Steps to run the script:
+
+- Go to the Djinni candidates page.
+
+- Apply the filters you need.
+
+- Then open Tampermonkey and enable the script using the toggle switch.
+
+- Return to the Djinni candidates page and refresh it.
+
+- After the script finishes, disable it in Tampermonkey to prevent it from running again unintentionally.
 
 ## Output Format
 
 The script generates a CSV file with the following columns:
+- Level (automatically determined based on experience and position):
+  - Trainee: less than 1 year of experience
+  - Junior: 1-3 years of experience
+  - Middle: 3-5 years of experience
+  - Senior: more than 5 years of experience
+  - Lead: if position contains "Lead" (overrides experience-based level)
 - Position
 - Salary
 - Country

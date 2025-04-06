@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         Candidates Scraper for Djinni
 // @namespace    http://tampermonkey.net/
-// @version      2025-04-05
+// @version      2025-04-06
 // @description  Scrape candidates from Djinni
-// @author       Ihor Sheptiakov
+// @author       developer - Ihor Sheptiakov, idea creator - Mykhailo Protsenko
 // @match        https://djinni.co/developers/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=djinni.co
 // @grant        none
@@ -29,7 +29,6 @@ async function extractCandidateInfo(card) {
             await skillElementsMoreButton.click();
         }
         const skills = Array.from(skillElements).map(el => el.textContent.trim());
-        console.log('Skills:', skills.join(', '));
         return skills.join(', ');
     };
 
@@ -114,6 +113,25 @@ async function scrapeCurrentPage() {
     return candidates;
 }
 
+// Function to determine candidate level based on experience and position
+function determineLevel(experience, position) {
+    // First check if position contains "Lead"
+    if (position && position.toLowerCase().includes('lead')) {
+        return 'Lead';
+    }
+
+    // Extract years from experience string
+    const experienceMatch = experience.match(/(\d+(?:\.\d+)?)\s+(?:рік|роки|років)\s+досвіду/i);
+    if (!experienceMatch) return 'Unknown';
+
+    const years = parseFloat(experienceMatch[1]);
+
+    if (years < 1) return 'Trainee';
+    if (years < 3) return 'Junior';
+    if (years < 5) return 'Middle';
+    return 'Senior';
+}
+
 // Function to create and download CSV
 function downloadCSV(candidates) {
     // Escape CSV values
@@ -128,7 +146,7 @@ function downloadCSV(candidates) {
     };
 
     const headers = [
-        'Position', 'Salary', 'Country', 'City', 'Experience',
+        'Level', 'Position', 'Salary', 'Country', 'City', 'Experience',
         'English Level', 'Description', 'Skills', 'Profile URL',
         'Views', 'Timestamp'
     ];
@@ -136,11 +154,9 @@ function downloadCSV(candidates) {
     // Create header row
     const headerRow = headers.map(escapeCSV).join(',');
 
-    console.log(candidates);
-
-
     // Create data rows
     const dataRows = candidates.map(candidate => [
+        determineLevel(candidate.experience, candidate.position),
         candidate.position,
         candidate.salary,
         candidate.country,
@@ -151,7 +167,7 @@ function downloadCSV(candidates) {
         candidate.skills,
         candidate.profileUrl,
         candidate.views,
-        candidate.timestamp
+        candidate.timestamp,
     ].map(escapeCSV).join(','));
 
     // Combine header and data rows
